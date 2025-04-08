@@ -13,6 +13,8 @@ class Agenda:
         telefone = str(input("Telefone: "))
         email = str(input("Email: "))
         id = randint(100, 999)
+        if any(contato['id'] == id for contato in self.contatos):
+            id = randint(100, 999)
 
         contato = Pessoa(nome, sobrenome, telefone, email, id)
         self.contatos.append(contato.transformar_dict())
@@ -41,9 +43,9 @@ class Agenda:
             print("Nenhum contato encontrado.")
         else:
             self.listar_contato()
-            i = input('Digite o ID/Nome/SobreNome do contato que você deseja editar: ')
+            i = input('Digite o ID do contato que você deseja editar: ')
             for contato in self.contatos:
-                if contato['id'] == int(i) or contato['nome'] == i or contato['sobrenome'] == i:
+                if contato['id'] == int(i) or contato['nome'] == str(i) or contato['sobrenome'] == str(i):
                     edicao = int(input('''O que deseja editar?
         [1]-> Nome
         [2]-> Sobrenome
@@ -87,12 +89,12 @@ class Agenda:
             print("Nenhum contato encontrado.")
         else:
             self.listar_contato()
-            i = input('Digite o ID/Nome/SobreNome do contato que você deseja editar: ')
-            for i, contato in enumerate(self.contatos):
-                if contato['id'] == int(i) or contato['nome'] == i or contato['sobrenome'] == i:
+            i = int(input('Digite o ID do contato que você deseja editar: '))
+            for contato in self.contatos:
+                if contato['id'] == int(i) or contato['nome'] == str(i) or contato['sobrenome'] == str(i):
                     confirmar = str(input('Tem certeza que deseja excluir? [S/N]')).strip().upper()
                     if confirmar == 'S':
-                        del self.contatos[i]
+                        self.contatos.remove(contato)
                         print('Contato excluído com sucesso!')
                     else:
                         print('Operação cancelada.')
