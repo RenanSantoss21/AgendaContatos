@@ -102,7 +102,3 @@ class Agenda:
             print('Contato não encontrado.')
             sleep(1)
             os.system('cls')
-
-    def sair(self):
-        print('Fechando o programa...')
-        exit()
