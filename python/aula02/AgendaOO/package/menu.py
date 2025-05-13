@@ -1,10 +1,10 @@
 from package.agenda import Agenda
-import os
+
 
 class Menu:
     def __init__(self):
         self.agenda = Agenda()
-    
+
         self.menu = {
             1: self.agenda.adicionar_contato,
             2: self.agenda.listar_contato,
@@ -28,7 +28,7 @@ MENU:
     [5] - SAIR
 =============================================
 ESCOLHA A OPÇÃO: '''))
-            
+
             escolha = self.menu.get(opcao, self.opcao_invalida)
             escolha()
 

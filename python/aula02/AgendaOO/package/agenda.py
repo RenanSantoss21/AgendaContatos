@@ -3,10 +3,11 @@ from time import sleep
 import os
 from random import randint
 
+
 class Agenda:
     def __init__(self):
         self.contatos = []
-    
+
     def adicionar_contato(self):
         nome = str(input("Primeiro nome: "))
         sobrenome = str(input("Sobrenome: "))
@@ -21,7 +22,6 @@ class Agenda:
         print('Contato adicionado com sucesso!')
         sleep(1)
         os.system('cls')
-        
 
     def listar_contato(self):
         if not self.contatos:
@@ -29,14 +29,14 @@ class Agenda:
         else:
             print('Lista de contatos:')
             for i, ctt in enumerate(self.contatos):
-                print(f'''{i+1}. 
-    ID: {ctt['id']} 
-    Nome: {ctt['nome']} {ctt['sobrenome']}  
-    Tel: {ctt['telefone']}  
+                print(f'''{i+1}.
+    ID: {ctt['id']}
+    Nome: {ctt['nome']} {ctt['sobrenome']}
+    Tel: {ctt['telefone']}
     Email: {ctt['email']}''')
                 print()
         sleep(1)
-        input = ('Pressione Enter para continuar...')
+    input = ('Pressione Enter para continuar...')
 
     def editar_contato(self):
         if not self.contatos:
@@ -45,7 +45,12 @@ class Agenda:
             self.listar_contato()
             i = input('Digite o ID do contato que você deseja editar: ')
             for contato in self.contatos:
-                if contato['id'] == int(i) or contato['nome'] == str(i) or contato['sobrenome'] == str(i):
+                if (
+                    contato['id'] == int(i) or
+                    contato['nome'] == str(i) or
+                    contato['sobrenome'] == str(i)
+                ):
+
                     edicao = int(input('''O que deseja editar?
         [1]-> Nome
         [2]-> Sobrenome
@@ -83,7 +88,6 @@ class Agenda:
             sleep(1)
             os.system('cls')
 
-
     def apagar_contato(self):
         if not self.contatos:
             print("Nenhum contato encontrado.")
@@ -91,8 +95,15 @@ class Agenda:
             self.listar_contato()
             i = int(input('Digite o ID do contato que você deseja editar: '))
             for contato in self.contatos:
-                if contato['id'] == int(i) or contato['nome'] == str(i) or contato['sobrenome'] == str(i):
-                    confirmar = str(input('Tem certeza que deseja excluir? [S/N]')).strip().upper()
+                if (
+                    contato['id'] == int(i) or
+                    contato['nome'] == str(i) or
+                    contato['sobrenome'] == str(i)
+                ):
+
+                    confirmar = str(input(
+                        'Tem certeza que deseja excluir? [S/N]'
+                        )).strip().upper()
                     if confirmar == 'S':
                         self.contatos.remove(contato)
                         print('Contato excluído com sucesso!')
